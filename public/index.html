@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calendar Sync App</title>
+</head>
+<body>
+  <h1>Calendar Free/Busy Viewer</h1>
+  <button onclick="window.location='/auth'">🔄 Sync Calendar (First Time)</button>
+  <button onclick="getFreeBusy()">📅 View Free/Busy</button>
+
+  <pre id="output"></pre>
+
+  <script>
+    async function getFreeBusy() {
+      const res = await fetch('/api/freebusy');
+      const data = await res.json();
+      document.getElementById('output').textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
